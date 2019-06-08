@@ -6,7 +6,13 @@ module.exports = {
         rules: [{
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            use: ['babel-loader']
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ['@babel/preset-env','@babel/react'],
+                    plugins: ['@babel/proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
+                }
+            }
         }]
     },
     resolve: {
@@ -23,5 +29,6 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         hot: true
-    }
+    },
+    devtool: 'eval-source-map'
   }
