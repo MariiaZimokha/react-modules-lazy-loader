@@ -1,9 +1,22 @@
 import React, {PureComponent} from 'react';
+import LazyLoader from '../../src/index';
+import Image from './Image';
+
+function createImageArray() {
+    const output = [];
+    for(let i = 1; i < 101; ++i) {
+        output.push(`https://picsum.photos/id/${i}/300/300`);
+    }
+    return output;
+}
 
 export default class Example extends PureComponent {
     render() {
+        const images = createImageArray();
+
         return (<div className="container">
-            this is Example
+            {images.map(item => <LazyLoader key={item} > <Image key={item} url={item}/></LazyLoader>)}
+            
         </div>);
     }
 }
