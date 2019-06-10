@@ -46,7 +46,11 @@ export default class LazyLoader extends React.Component {
     }
 
     componentDidMount() {
-        this.createObserver();
+        if(window.IntersectionObserver === 'undefined') {
+            import(`intersection-observer`).then(this.createObserver);
+        } else {
+            this.createObserver();
+        }
     }
 
     componentWillUnmount() {
