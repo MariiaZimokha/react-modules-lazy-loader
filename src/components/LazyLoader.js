@@ -16,7 +16,8 @@ export default class LazyLoader extends React.Component {
     }
 
     componentDidMount() {
-        if(window.IntersectionObserver === 'undefined') {
+        if(typeof window.IntersectionObserver === 'undefined') {
+            console.log('this is somethinf')
             import(`intersection-observer`).then(this.createObserver);
         } else {
             this.createObserver();
@@ -42,10 +43,13 @@ export default class LazyLoader extends React.Component {
     }
 
     render() {
-        const {children} = this.props;
+        const {children, placeholder} = this.props;
         const {hasIntersected} = this.state;
+        const style = hasIntersected || placeholder ? {} : {height: '300px'};
+
         return (
-            <div ref={this.target} className="lazy-load" style={hasIntersected ? {} : {height: '300px'}}>
+            <div ref={this.target} style={style}>
+                {!hasIntersected && placeholder}
                 {hasIntersected && children}
             </div>
         );
