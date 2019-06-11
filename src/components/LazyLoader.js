@@ -1,35 +1,5 @@
 import React from 'react';
-
-class IntersectionObserverSingleton {
-    static allTargets = new Map();
-    static allObservers = new Map();
-
-    static getInstance(onIntersection, options, ref) {
-        const key = Object.values(options).join(',');
-        const observer = IntersectionObserverSingleton.allObservers.get(key);
-
-        IntersectionObserverSingleton.allTargets.set(ref, {onIntersection});
-
-        if (!observer) {
-            const newObserver = new IntersectionObserver(IntersectionObserverSingleton.onChange, options);
-            IntersectionObserverSingleton.allObservers.set(key, newObserver);
-            return newObserver;
-        }
-
-        return observer;
-    }
-
-    static onChange(entries) {
-        entries.forEach((entry) => {
-            const {target} = entry;
-            const instance = IntersectionObserverSingleton.allTargets.get(target);
-            if (instance) {
-                instance.onIntersection(entry);
-            }
-        });
-    }
-}
-
+import IntersectionObserverMg  from './IntersectionObserverMg';
 
 export default class LazyLoader extends React.Component {
     static defaultProps = {
@@ -46,7 +16,8 @@ export default class LazyLoader extends React.Component {
     }
 
     componentDidMount() {
-        if(window.IntersectionObserver === 'undefined') {
+        if(typeof window.IntersectionObserver === 'undefined') {
+            console.log('this is somethinf')
             import(`intersection-observer`).then(this.createObserver);
         } else {
             this.createObserver();
@@ -67,15 +38,18 @@ export default class LazyLoader extends React.Component {
     createObserver = () => {
         const {root, margin, threshold} = this.props;
         const options = {root, margin, threshold};
-        this.observer = IntersectionObserverSingleton.getInstance(this.onIntersection, options, this.target.current);
+        this.observer = IntersectionObserverMg.getInstance(this.onIntersection, options, this.target.current);
         this.observer.observe(this.target.current);
     }
 
     render() {
-        const {children} = this.props;
+        const {children, placeholder} = this.props;
         const {hasIntersected} = this.state;
+        const style = hasIntersected || placeholder ? {} : {height: '300px'};
+
         return (
-            <div ref={this.target} className="lazy-load" style={hasIntersected ? {} : {height: '300px'}}>
+            <div ref={this.target} style={style}>
+                {!hasIntersected && placeholder}
                 {hasIntersected && children}
             </div>
         );

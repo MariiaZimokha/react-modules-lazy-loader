@@ -11,8 +11,11 @@ module.exports = {
             use: {
                 loader: "babel-loader",
                 options: {
-                    presets: ['@babel/preset-env','@babel/react'],
-                    plugins: ['@babel/proposal-class-properties', '@babel/plugin-syntax-dynamic-import']
+                    plugins: [
+                        '@babel/proposal-class-properties',
+                        '@babel/plugin-syntax-dynamic-import',
+                        'transform-class-properties'
+                    ]
                 }
             }
         },
