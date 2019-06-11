@@ -1,7 +1,7 @@
 import React from 'react' ;
 import LazyLoader from './LazyLoader';
 import {shallow} from 'enzyme';
-import IntersectionObserverMg  from './IntersectionObserver';
+import IntersectionObserverMg  from './IntersectionObserverMg';
 
 describe('LazyLoader', () => {
     const windowOriginal = global.window;

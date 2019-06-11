@@ -1,5 +1,5 @@
 import React from 'react';
-import IntersectionObserverMg  from './IntersectionObserver';
+import IntersectionObserverMg  from './IntersectionObserverMg';
 
 export default class LazyLoader extends React.Component {
     static defaultProps = {
