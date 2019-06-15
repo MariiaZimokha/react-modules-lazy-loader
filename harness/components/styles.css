@@ -2,13 +2,8 @@
     width: 100%;
 }
 
-.lazy-load {
-    width: 50%;
-    display: inline-block;
-}
-
 .image {
-    width: 100%;
+    width: 50%;
     display: inline-block;
 }
 
