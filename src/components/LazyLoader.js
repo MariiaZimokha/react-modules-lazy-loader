@@ -45,13 +45,11 @@ export default class LazyLoader extends React.Component {
     render() {
         const {children, placeholder} = this.props;
         const {hasIntersected} = this.state;
-        const style = hasIntersected || placeholder ? {} : {height: '300px'};
-
-        return (
-            <div ref={this.target} style={style}>
-                {!hasIntersected && placeholder}
-                {hasIntersected && children}
-            </div>
+        const showPlaceholder = placeholder || (<div style={{height: '300px'}} />);
+    
+        return React.cloneElement(
+            hasIntersected ? children : showPlaceholder, 
+            {ref: this.target}
         );
     }
 }

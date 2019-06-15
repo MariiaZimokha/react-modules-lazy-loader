@@ -15,7 +15,9 @@ export default class Example extends PureComponent {
         const images = createImageArray();
 
         return (<div className="container">
-            {images.map(item => <LazyLoader key={item} > <Image key={item} url={item}/></LazyLoader>)}
+            {images.map(item => (<LazyLoader key={item}> 
+                <Image key={item} url={item}/>
+                </LazyLoader>))}
             
         </div>);
     }
