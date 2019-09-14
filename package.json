@@ -13,7 +13,9 @@
     "build": "webpack --mode production",
     "test": "jest src --coverage",
     "transpile": "babel src -d dist --copy-files",
-    "prepublishOnly": "npm run transpile"
+    "prepublishOnly": "npm run transpile",
+    "deploy": "gh-pages -d ./harness/dist",
+    "publish-demo": "npm run build && npm run deploy"
   },
   "jest": {
     "verbose": true,
@@ -50,6 +52,7 @@
     "css-loader": "^2.1.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "gh-pages": "^2.1.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
