@@ -35,12 +35,12 @@ module.exports = {
     },
     resolve: {
         extensions: ['*', '.js', '.jsx']
-    },
-    output: {
+      },
+      output: {
         path: __dirname + '/dist',
         publicPath: '/',
         filename: '[name].[hash].js'
-    },    
+      }, 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
