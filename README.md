@@ -1,7 +1,7 @@
 # LazyLoader
 LazyLoader is a React component which allows you to lazy load images and components. LazyLoader is a wraper for Intersection Observer API.
 
-**Demo:** https://mariiazimokha.github.io/LazyLoader/
+**Demo:**  https://mariiazimokha.github.io/react-modules-lazy-loader/
 
 ## Installation
 

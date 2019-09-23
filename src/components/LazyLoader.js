@@ -4,7 +4,7 @@ import IntersectionObserverMg  from './IntersectionObserverMg';
 export default class LazyLoader extends React.Component {
     static defaultProps = {
         root: null,
-        margin: '0px',
+        rootMargin: '0px',
         threshold: 0,
         children: null
     };
@@ -17,7 +17,6 @@ export default class LazyLoader extends React.Component {
 
     componentDidMount() {
         if(typeof window.IntersectionObserver === 'undefined') {
-            console.log('this is somethinf')
             import(`intersection-observer`).then(this.createObserver);
         } else {
             this.createObserver();
@@ -36,8 +35,8 @@ export default class LazyLoader extends React.Component {
     }
 
     createObserver = () => {
-        const {root, margin, threshold} = this.props;
-        const options = {root, margin, threshold};
+        const {root, rootMargin, threshold} = this.props;
+        const options = {root, rootMargin, threshold};
         this.observer = IntersectionObserverMg.getInstance(this.onIntersection, options, this.target.current);
         this.observer.observe(this.target.current);
     }
@@ -48,7 +47,7 @@ export default class LazyLoader extends React.Component {
         const showPlaceholder = placeholder || (<div style={{height: '300px'}} />);
     
         return React.cloneElement(
-            hasIntersected ? children : showPlaceholder, 
+            showPlaceholder, 
             {ref: this.target}
         );
     }

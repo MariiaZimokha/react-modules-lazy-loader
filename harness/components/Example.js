@@ -10,14 +10,18 @@ function createImageArray() {
     return output;
 }
 
+const placeholder = (<div className="placeholder"></div>)
+
 export default class Example extends PureComponent {
     render() {
         const images = createImageArray();
 
         return (<div className="container">
-            {images.map(item => (<LazyLoader key={item}> 
-                <Image key={item} url={item}/>
-                </LazyLoader>))}
+            {images.map(item => (
+                <LazyLoader key={item} placeholder={placeholder}> 
+                    <Image key={item} url={item}/>
+                </LazyLoader>
+            ))}
             
         </div>);
     }

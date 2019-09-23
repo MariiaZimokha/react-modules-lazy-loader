@@ -4,7 +4,17 @@
 
 .image {
     width: 50%;
+    height: 300px;
     display: inline-block;
+}
+
+.placeholder {
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    width: 50%;
+    height: 300px;
+    display: inline-block;
+    background: #f6f7f8;
 }
 
 img {
