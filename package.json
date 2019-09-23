@@ -2,7 +2,7 @@
   "name": "react-modules-lazy-loader",
   "version": "1.0.4",
   "author": "Mariia Zimokha",
-  "description": "",
+  "description": "React component for lazy loading components, images or anything",
   "main": "dist/index.js",
   "engines": {
     "node": "10.0.0",
@@ -17,6 +17,15 @@
     "deploy": "gh-pages -d ./harness/dist",
     "publish-demo": "npm run build && npm run deploy"
   },
+  "keywords": [
+    "react-component",
+    "react",
+    "lazyload",
+    "Intersection",
+    "Observer"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MariiaZimokha/react-modules-lazy-loader#readme",
   "jest": {
     "verbose": true,
     "clearMocks": true,
